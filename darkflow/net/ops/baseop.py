@@ -1,14 +1,14 @@
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
 import numpy as np
 
 FORM = '{:>6} | {:>6} | {:<32} | {}'
 FORM_ = '{}+{}+{}+{}'
-LINE = FORM_.format('-'*7, '-'*8, '-'*34, '-'*15) 
+LINE = FORM_.format('-'*7, '-'*8, '-'*34, '-'*15)
 HEADER = FORM.format(
     'Source', 'Train?','Layer description', 'Output size')
 
 def _shape(tensor): # work for both tf.Tensor & np.ndarray
-    if type(tensor) in [tf.Variable, tf.Tensor]: 
+    if type(tensor) in [tf.Variable, tf.Tensor]:
         return tensor.get_shape()
     else: return tensor.shape
 
@@ -18,7 +18,7 @@ def _name(tensor):
 class BaseOp(object):
     """
     BaseOp objects initialise with a darknet's `layer` object
-    and input tensor of that layer `inp`, it calculates the 
+    and input tensor of that layer `inp`, it calculates the
     output of this layer and place the result in self.out
     """
 
@@ -94,7 +94,7 @@ class BaseOp(object):
             _shape(self.inp.out)) + '\n'
         if not self.act: return msg
         return msg + FORM.format(
-            self.act, self.train_msg, 
+            self.act, self.train_msg,
             self.speak(), _shape(self.out))
-    
+
     def speak(self): pass

@@ -1,4 +1,4 @@
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
 import time
 from . import help
 from . import flow
@@ -9,17 +9,19 @@ from ..dark.darknet import Darknet
 import json
 import os
 
+tf.disable_v2_behavior()
+
 class TFNet(object):
 
 	_TRAINER = dict({
-		'rmsprop': tf.compat.v1.train.RMSPropOptimizer,
-		'adadelta': tf.compat.v1.train.AdadeltaOptimizer,
-		'adagrad': tf.compat.v1.train.AdagradOptimizer,
-		'adagradDA': tf.compat.v1.train.AdagradDAOptimizer,
-		'momentum': tf.compat.v1.train.MomentumOptimizer,
-		'adam': tf.compat.v1.train.AdamOptimizer,
-		'ftrl': tf.compat.v1.train.FtrlOptimizer,
-		'sgd': tf.compat.v1.train.GradientDescentOptimizer
+		'rmsprop': tf.train.RMSPropOptimizer,
+		'adadelta': tf.train.AdadeltaOptimizer,
+		'adagrad': tf.train.AdagradOptimizer,
+		'adagradDA': tf.train.AdagradDAOptimizer,
+		'momentum': tf.train.MomentumOptimizer,
+		'adam': tf.train.AdamOptimizer,
+		'ftrl': tf.train.FtrlOptimizer,
+		'sgd': tf.train.GradientDescentOptimizer
 	})
 
 	# imported methods

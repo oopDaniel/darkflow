@@ -1,7 +1,7 @@
 # import tensorflow.contrib.slim as slim
 import tf_slim as slim
 from .baseop import BaseOp
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
 import numpy as np
 
 class reorg(BaseOp):
